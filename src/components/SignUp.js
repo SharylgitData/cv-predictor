@@ -193,6 +193,7 @@ export default function SignUp() {
     isorganization: "",
   });
   const [errors, setErrors] = useState({});
+  const [data, setData] = useState(null);
 
   const validate = () => {
     let newErrors = {};
@@ -224,7 +225,6 @@ export default function SignUp() {
     if (validate()) {
       const payload = {
         ...formData,
-        usertype: formData.isorg ? "company" : "jobseeker",
       };
       fetch("http://localhost:8090/resume/signUp", {
         method: "POST",
@@ -232,8 +232,14 @@ export default function SignUp() {
         body: JSON.stringify(payload),
       })
         .then((response) => response.json())
-        .then((data) => console.log("Success:", data))
-        .catch((error) => console.error("Error:", error));
+        .then((data) => {
+          console.log("Success:", data);
+          setData(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setData(error);
+        });
     }
   };
 
@@ -247,7 +253,7 @@ export default function SignUp() {
       {/* right side: form */}
       <div className="login-right-signup">
         <h1>Sign Up</h1>
-
+        <p className="resultMessage"> {data?.result}</p>
         <div className="signin-link">
           Already have an account?{" "}
           <Link className="link" to="/">

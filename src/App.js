@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import AuthLayout from "./components/AuthLayout";
+import EmployerJobPortal from "./components/EmployerJobPortal";
+
 function App() {
   const [moviesbundle, setMovies] = useState([]);
   const [watchlist, setwatchlist] = useState([]);
@@ -53,7 +55,10 @@ function App() {
               }
             /> */}
             <Route path="/signUp" element={<SignUp />}></Route>
-
+            <Route
+              path="/employerJobPost"
+              element={<EmployerJobPortal />}
+            ></Route>
             <Route
               path="/watchlist"
               element={

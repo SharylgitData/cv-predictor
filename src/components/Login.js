@@ -39,38 +39,39 @@ import "../newLogin.css";
 import "../LoginSignUp.css";
 
 export default function Login() {
+  const [data, setData] = useState(null);
   const [formData, setFormData] = useState({
     email_id: "",
     password: "",
   });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Your login logic (e.g. API call) goes here
-  };
-
-  const handleChange = (e) => {
-    const { name, type, value, checked } = e.target;
-
-    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
-  };
-
-  const handleSubmit = () => {
-    formData.isorganization = formData.isorganization ? "Yes" : "No";
-    console.log(formData);
+  const handleLogin = () => {
+    console.log("formData", formData);
 
     const payload = {
       ...formData,
-      usertype: formData.isorganization ? "company" : "jobseeker",
     };
-    fetch("http://localhost:8090/resume/evaluator", {
+    fetch("http://localhost:8090/resume/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())
-      .then((data) => console.log("Success:", data))
-      .catch((error) => console.error("Error:", error));
+      .then((data) => {
+        console.log("Success:", data);
+        <Link className="link" to="/employerJobPost"></Link>;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setData(error);
+      });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({ ...formData, [name]: value });
+    console.log("formData", formData);
   };
 
   return (
@@ -83,6 +84,7 @@ export default function Login() {
       {/* right side: form */}
       <div className="login-right">
         <h1>Login</h1>
+        <p className="resultMessage"> {data?.result}</p>
         <form onSubmit={handleLogin}>
           <div className="inputs-login">
             <div className="input">
@@ -109,7 +111,7 @@ export default function Login() {
             Sign In
           </button> */}
           <div className="submit-container">
-            <div className="submit" onClick={handleSubmit}>
+            <div className="submit" onClick={handleLogin}>
               Sign In
             </div>
           </div>
