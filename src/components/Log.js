@@ -10,7 +10,7 @@ function Log() {
   const handleLogin = (e) => {
     e.preventDefault();
     // Implement your login logic here
-    console.log("Logging in with:", { email, password });
+
     navigate("/signup"); // Example of navigation after login
   };
 

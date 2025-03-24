@@ -1,44 +1,10 @@
-// import React from "react";
-// import "../LoginSignUp.css";
-// export default function Login() {
-//   const validateAndProcess = (values) => {};
-
-//   return (
-//     <>
-//       {/* <div className="container"> */}
-//       <div className="info">
-//         {" "}
-//         If you are yet to Register then click on Sign up button{" "}
-//       </div>
-//       <div className="text"> Login </div>
-//       <div className="underline" />
-//       <div className="inputs">
-//         <div className="input">
-//           <img src="Assets/email.png" alt="Email Id" />
-//           <input type="email" placeholder="Email Id" />
-//         </div>
-//         <div className="input">
-//           <img src="Assets/password.png" alt="Password" />
-//           <input type="password" placeholder="Password" />
-//         </div>
-//       </div>
-//       <div className="forgot-password">Forgot Password? </div>
-//       <div className="submit-container">
-//         <div className="submit" onClick={validateAndProcess}>
-//           Login
-//         </div>
-//       </div>
-//       {/* </div> */}
-//     </>
-//   );
-// }
-
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../newLogin.css";
 import "../LoginSignUp.css";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [formData, setFormData] = useState({
     email_id: "",
@@ -57,9 +23,17 @@ export default function Login() {
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        <Link className="link" to="/employerJobPost"></Link>;
+      .then((userData) => {
+        console.log("login page response data ", userData);
+        if (userData?.data?.type === "organization") {
+          navigate("/employerJobPost", { state: userData });
+        } else if (userData?.data?.type === "jobSeeker") {
+          navigate("/jobseeker", { state: userData });
+        } else if (userData?.data?.type === "admin") {
+          navigate("/admin", { state: userData });
+        } else {
+          alert("Unknown user type, please contact support.");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -71,7 +45,6 @@ export default function Login() {
     const { name, value } = e.target;
 
     setFormData({ ...formData, [name]: value });
-    console.log("formData", formData);
   };
 
   return (
@@ -93,6 +66,7 @@ export default function Login() {
                 type="email"
                 name="email_id"
                 placeholder="Email Id"
+                value={formData.email_id}
                 onChange={handleChange}
               />
             </div>
@@ -103,6 +77,7 @@ export default function Login() {
                 type="password"
                 name="password"
                 placeholder="Password"
+                value={formData.password}
                 onChange={handleChange}
               />
             </div>

@@ -1,0 +1,310 @@
+/* Container: Uses the same gradient background as newLogin.css */
+.employer-container {
+  width: 90%;
+
+  margin: 2rem 2rem 1rem 2rem;
+  min-height: 85vh;
+  padding: 1rem;
+  background: linear-gradient(to right, gray, rgba(0, 0, 0, 0));
+  font-family: sans-serif;
+  height: 100%;
+}
+
+/* Page Title */
+.employer-container h1 {
+  font-size: 2rem; /* Adjusted from text-xl */
+  font-weight: bold;
+  margin-bottom: 1.5rem; /* mb-4 equivalent */
+  color: #ffed63; /* Accent color from your login page */
+  text-align: center;
+  margin-left: 10%;
+}
+
+/* Option Buttons Container */
+.option-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* similar to space-x-4 */
+  margin-bottom: 1.5rem;
+  margin-left: 10%;
+}
+
+/* Option Button Styles */
+.option-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.option-button.request {
+  background-color: #007bff;
+  border-radius: 50px;
+  background: #776a06;
+}
+
+.option-button.view {
+  background-color: #28a745; /* Green (for View Jobs Posted) */
+  border-radius: 50px;
+  background: #776a06;
+}
+
+.option-button:hover {
+  opacity: 0.9;
+}
+
+/* Section Box: For both Request and View sections */
+.section-box {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f5f5f5; /* Light gray background */
+  margin-bottom: 1.5rem;
+  margin-left: 10%;
+}
+
+/* Section Heading */
+.section-box h2 {
+  font-size: 1.8rem; /* text-lg equivalent */
+  font-weight: 600; /* font-semibold equivalent */
+  margin-bottom: 0.5rem; /* mb-2 */
+  color: #333;
+  font-weight: bold;
+}
+
+/* Text Area for Job Description */
+.section-box textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+  height: 300px;
+}
+
+/* Date Input for Deadline */
+.section-box input[type="date"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Request Job Button */
+.request-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #776a06;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.request-btn:hover {
+  background-color: #0069d9;
+}
+
+/* Jobs List Section */
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Each Job Item */
+.job-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.job-item span {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* View Button for Each Job */
+.view-btn {
+  padding: 0.5rem 1rem;
+  background-color: gray; /* Purple */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-btn:hover {
+  background-color: lightgray;
+}
+
+label {
+  color: #333;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+.hidden {
+  display: none;
+}
+
+.section-box input[type="text"] {
+  width: 80%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.noJob {
+  color: #ffed63;
+  font-weight: bold;
+  background-color: gray;
+}
+
+/* Table container */
+.job-requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+/* Table headers */
+.job-requests-table th {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  text-align: left;
+  background-color: #776a06;
+  color: #ffed63; /* Accent font color */
+  font-weight: bold;
+}
+
+/* Table cells */
+.job-requests-table td {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  text-align: left;
+  color: #333; /* Change to desired font color */
+  word-wrap: break-word; /* Ensures long content wraps */
+}
+
+/* Link for Description */
+.job-requests-table a {
+  color: gray; /* Blue link color */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.job-requests-table a:hover {
+  color: #0056b3;
+}
+
+/* Adjusted Button Styles */
+.decide-btn {
+  padding: 0.5rem 1rem;
+
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  margin: 0.25rem; /* Small margin around buttons */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 1rem;
+}
+
+/* Optional: Adjust table row spacing */
+.job-requests-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.green {
+  background-color: forestgreen;
+}
+
+.red {
+  background-color: red;
+}
+
+.decide-btn:hover {
+  background-color: #776a06;
+}
+
+.jobseeker-requests-table {
+  padding: 0.75rem;
+  text-align: left;
+  color: #776a06; /* Accent font color */
+  font-weight: bold;
+}
+
+.applyJob-section {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+/* 
+.jd-section {
+  margin-top: 50px;
+  justify-content: center;
+  width: 90%;
+  max-width: 800px; 
+  margin: 0 auto;
+} */
+.jd-section {
+  margin: 1rem auto;
+  max-width: 700px;
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+
+  /* Typography for readability */
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify; /* Distributes text evenly across each line */
+
+  white-space: pre-wrap;
+  /* If you want to preserve line breaks from the server, uncomment:
+     white-space: pre-wrap; */
+}
+
+.job_header {
+  color: #333;
+  padding: 0.5rem;
+}
+
+.logout {
+  color: #ffed63;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-left: 100%;
+  cursor: pointer;
+}
+
+.userEmail {
+  color: #ffed63;
+  font-weight: bold;
+  margin-left: 80%;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+  font-style: italic;
+}
+
+.uploadResume {
+  margin-right: 3rem;
+}

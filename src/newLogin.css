@@ -62,8 +62,9 @@
 
 .resultMessage {
   margin: 10px 50% 2% 10%;
-  color: #2bbddb;
+  color: rgb(184, 239, 184);
   font-size: 2 rem;
+  font-weight: bold;
 }
 
 .login-button {
