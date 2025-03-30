@@ -111,7 +111,7 @@ export default function Admin() {
       {/* Modal for Job Description */}
       {selectedJobDesc && (
         <div className="modal">
-          <div className="modal-content">
+          <div className="modal-content admin-job-description">
             <span className="close" onClick={() => setSelectedJobDesc(null)}>
               &times;
             </span>

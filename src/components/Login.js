@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../newLogin.css";
 import "../LoginSignUp.css";
-
+import { URLS } from "./Constants";
 export default function Login() {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
@@ -17,7 +17,7 @@ export default function Login() {
     const payload = {
       ...formData,
     };
-    fetch("http://localhost:8090/resume/login", {
+    fetch(URLS.base + "login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

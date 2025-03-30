@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../employerJobPortal.css";
+import { URLS } from "./Constants";
 
 export default function JobSeeker() {
   const location = useLocation();
@@ -8,17 +9,25 @@ export default function JobSeeker() {
   const [jobs, setJobs] = useState(jobDetails?.data.jobDetails || []);
   const navigate = useNavigate();
   const emailId = jobDetails?.data.emailId;
-
+  console.log("jobseeker", jobDetails);
   const handleApply = (job) => {
-    // Check the personalityTest attribute (case-insensitive)
     if (
       jobDetails?.data.personality_test &&
       jobDetails?.data.personality_test.toLowerCase() === "y"
     ) {
-      // Navigate to the Apply For Job page and pass the job details in state
-      navigate("/applyForJob", { state: { job, emailId, jobDetails } });
+      fetch(URLS.base + `ifapplied/${job.job_id}/${emailId}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((res) => res.text())
+        .then((response) => {
+          if (response.includes("already applied"))
+            alert("You have already applied to this position");
+          else
+            navigate("/applyForJob", { state: { job, emailId, jobDetails } });
+        });
     } else {
-      // Otherwise, redirect to the personality test page
+      // otherwise  redirect to the personality test page
       navigate("/questionnaire", {
         state: { job, emailId, jobDetails },
       });
@@ -48,7 +57,7 @@ export default function JobSeeker() {
             </thead>
             <tbody>
               {jobs.map((job) => (
-                <tr key={job.id}>
+                <tr key={job.job_id}>
                   <td>{job.organization}</td>
                   <td>{job.job_title}</td>
                   <td>
@@ -64,7 +73,7 @@ export default function JobSeeker() {
             </tbody>
           </table>
         ) : (
-          <p>No job listings available at the moment.</p>
+          <p className="noJoblist">No job listings available at the moment.</p>
         )}
       </div>
     </div>

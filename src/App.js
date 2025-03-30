@@ -12,6 +12,7 @@ import JobSeeker from "./components/JobSeeker";
 
 import ApplyForJob from "./components/ApplyForJob";
 import { Questionnaire } from "./components/Questionnaire";
+import RankDisplayPage from "./components/RankDisplayPage";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
             <Route path="/applyForJob" element={<ApplyForJob />}></Route>
             <Route path="/questionnaire" element={<Questionnaire />}></Route>
+            <Route path="/userApplied" element={<RankDisplayPage />}></Route>
           </Routes>
         </Router>
       </div>

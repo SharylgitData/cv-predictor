@@ -13,11 +13,6 @@ export default function ApplyForJob() {
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const [formData, setFormData] = useState({
-  //   job_id: job.job_id,
-  //   email_id: emailId,
-  //   resume,
-  // });
 
   const handleFileChange = (e) => {
     setResume(e.target.files[0]);
@@ -41,6 +36,7 @@ export default function ApplyForJob() {
       formData.append("job_id", job.job_id); // Ensure job.job_id is the correct property
       formData.append("email_id", emailId || ""); // Use the appropriate email field
       formData.append("job_description", job.job_description);
+      formData.append("job_title", job.job_title);
       console.log("data to send to java to apply/", formData);
       const response = await fetch(URLS.base + "apply", {
         method: "POST",
@@ -51,7 +47,8 @@ export default function ApplyForJob() {
         throw new Error("Failed to apply for the job. Please try again later.");
       }
 
-      alert("Application submitted successfully!");
+      const message = await response.text();
+      alert(message);
       console.log(joblist);
       const updatedJobList = joblist.data.jobDetails.filter(
         (req) => req.job_id !== job.job_id

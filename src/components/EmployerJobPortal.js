@@ -28,12 +28,12 @@ function EmployerJobPortal() {
   const navigate = useNavigate();
   //console.log("postedJobs", postedJobs[0]);
 
-  useEffect(() => {
-    fetch("http://localhost:8090/{jobid}")
-      .then((response) => response.json())
-      .then((data) => {})
-      .catch((error) => console.error("Error fetching jobs:", error));
-  }, []);
+  // useEffect(() => {
+  //   fetch(URLS.base + "{jobid}")
+  //     .then((response) => response.json())
+  //     .then((data) => {})
+  //     .catch((error) => console.error("Error fetching jobs:", error));
+  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,22 +64,29 @@ function EmployerJobPortal() {
         // setJobDescription("");
         // setDeadline("");
         successMsg(data);
+        setFormData({
+          job_title: "",
+          organization: userData?.data.userName,
+          email_id: userData?.data.emailId,
+          job_description: "",
+          deadline,
+          status: "Pending",
+        });
       })
       .catch((error) => console.error("Error submitting job request:", error));
   };
 
   const getUserApplied = (id) => {
-    const payload = { id };
-    fetch("http://localhost:8090/jobs/getAppliedUsers", {
-      method: "GET",
-      headers: { "content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
-      .then((appliedusers) => {
-        navigate("/userApplied", { state: appliedusers });
-      })
-      .catch((error) => console.error("Error submitting job request :", error));
+    console.log("the job id is ", id);
+    // fetch(URLS.base + `getAppliedUsers/${id}`, {
+    //   method: "GET",
+    //   headers: { "content-Type": "application/json" },
+    // })
+    //   .then((response) => response.json())
+    //   .then((appliedusers) => {
+    //     navigate("/userApplied", { state: appliedusers });
+    //   })
+    //   .catch((error) => console.error("Error submitting job request :", error));
   };
   const logout = () => {
     navigate("/");
