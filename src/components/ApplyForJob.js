@@ -124,7 +124,7 @@ export default function ApplyForJob() {
           </form>
         </div>
       ) : (
-        <p>Job details not available.</p>
+        <p className="noJoblist">Job details not available.</p>
       )}
     </div>
   );

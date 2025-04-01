@@ -104,7 +104,7 @@ export default function Admin() {
             </tbody>
           </table>
         ) : (
-          <p>No job requests available.</p>
+          <p className="noJoblist">No job requests available.</p>
         )}
       </div>
 

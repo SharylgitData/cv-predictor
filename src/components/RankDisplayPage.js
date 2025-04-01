@@ -1,13 +1,30 @@
 import React from "react";
 import "../employerJobPortal.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function RankDisplayPage() {
   const location = useLocation();
-  const appliedUsers = location.state;
-
+  const { appliedusers, emailId, userData } = location.state || {};
+  console.log("the appliedusers is rankpage", userData);
+  const navigate = useNavigate();
+  const logout = () => {
+    navigate("/");
+  };
   return (
     <div className="employer-container">
+      <div className="logoutDiv">
+        <p
+          className="gotoPreviousPage"
+          onClick={() => navigate("/employerJobPost", { state: userData })}
+        >
+          {" "}
+          back{" "}
+        </p>
+        <p className="userEmail">{emailId}</p>
+        <p className="logout" onClick={logout}>
+          Logout
+        </p>
+      </div>
       <h1>Candidate Ranking </h1>
       <div className="section-box">
         <table className="rank-table">
@@ -20,8 +37,8 @@ export default function RankDisplayPage() {
             </tr>
           </thead>
           <tbody>
-            {appliedUsers?.length > 0 ? (
-              appliedUsers.map((d) => (
+            {appliedusers?.length > 0 ? (
+              appliedusers.map((d) => (
                 <tr>
                   <td>{d.name}</td>
                   <td>{d.rank}</td>

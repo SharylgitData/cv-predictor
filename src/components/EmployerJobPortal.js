@@ -6,6 +6,7 @@ import { URLS } from "./Constants";
 function EmployerJobPortal() {
   const location = useLocation();
   const userData = location.state;
+  console.log("the userdata from rnak page is ", userData);
   const [selectedOption, setSelectedOption] = useState("requestJob");
 
   const [deadline, setDeadline] = useState("");
@@ -22,24 +23,15 @@ function EmployerJobPortal() {
   });
 
   const [postedJobs, setPostedJobs] = useState(userData?.data.jobDetails || []);
-
+  const emailId = formData?.email_id;
   //const postedJobs = userData?.data.jobDetails;
 
   const navigate = useNavigate();
-  //console.log("postedJobs", postedJobs[0]);
-
-  // useEffect(() => {
-  //   fetch(URLS.base + "{jobid}")
-  //     .then((response) => response.json())
-  //     .then((data) => {})
-  //     .catch((error) => console.error("Error fetching jobs:", error));
-  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormData({ ...formData, [name]: value });
-    //console.log("formData", formData);
   };
 
   const successMsg = (data) => {
@@ -78,15 +70,18 @@ function EmployerJobPortal() {
 
   const getUserApplied = (id) => {
     console.log("the job id is ", id);
-    // fetch(URLS.base + `getAppliedUsers/${id}`, {
-    //   method: "GET",
-    //   headers: { "content-Type": "application/json" },
-    // })
-    //   .then((response) => response.json())
-    //   .then((appliedusers) => {
-    //     navigate("/userApplied", { state: appliedusers });
-    //   })
-    //   .catch((error) => console.error("Error submitting job request :", error));
+    fetch(URLS.base + `getAppliedUsers/${id}`, {
+      method: "GET",
+      headers: { "content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((appliedusers) => {
+        console.log("the appliedusers is ", appliedusers);
+        navigate("/userApplied", {
+          state: { appliedusers, emailId, userData },
+        });
+      })
+      .catch((error) => console.error("Error submitting job request :", error));
   };
   const logout = () => {
     navigate("/");
@@ -94,7 +89,7 @@ function EmployerJobPortal() {
   return (
     <div className="employer-container">
       <div className="logoutDiv">
-        <p className="userEmail">{formData?.email_id}</p>
+        <p className="userEmail">{emailId}</p>
         <p className="logout" onClick={logout}>
           Logout
         </p>
@@ -166,14 +161,14 @@ function EmployerJobPortal() {
                   <button
                     className="view-btn"
                     // onClick={() => navigate(`/job/${job?.id}/applicants`)}
-                    onClick={getUserApplied(job.job_id)}
+                    onClick={() => getUserApplied(job.job_id)}
                   >
                     View
                   </button>
                 </div>
               ))
             ) : (
-              <p>No jobs posted yet.</p>
+              <p className="noJoblist">No jobs posted yet.</p>
             )}
           </div>
         </div>
