@@ -8,7 +8,7 @@ export default function ApplyForJob() {
   // Retrieve the job details passed from the JobSeeker page
   const { job, emailId, jobDetails } = location.state || {};
 
-  //console.log("jobDetails with applyforjb page", jobDetails);
+  console.log("jobDetails with applyforjb page", jobDetails);
   const [joblist, setJoblist] = useState(jobDetails || []);
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -38,6 +38,7 @@ export default function ApplyForJob() {
       formData.append("job_description", job.job_description);
       formData.append("job_title", job.job_title);
       console.log("data to send to java to apply/", formData);
+
       const response = await fetch(URLS.base + "apply", {
         method: "POST",
         body: formData,

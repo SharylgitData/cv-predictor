@@ -116,7 +116,8 @@ export default function Admin() {
               &times;
             </span>
             <h2>Job Description</h2>
-            <p>{selectedJobDesc}</p>
+            <br></br>
+            <p className="jobdescriptionmodal">{selectedJobDesc}</p>
           </div>
         </div>
       )}

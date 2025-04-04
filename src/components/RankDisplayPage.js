@@ -31,8 +31,8 @@ export default function RankDisplayPage() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Rank</th>
-              <th>Why this Rank?</th>
+              <th>Score</th>
+              <th>Why this Score?</th>
               <th></th>
             </tr>
           </thead>

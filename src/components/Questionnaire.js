@@ -5,7 +5,7 @@ import "../questionnaire.css";
 import { URLS } from "./Constants";
 export function Questionnaire({ userData }) {
   const location = useLocation();
-  const { job, emailId, jobDetails } = location.state;
+  let { job, emailId, jobDetails } = location.state;
   console.log("jobDetails", jobDetails);
   const [error, setError] = useState("");
   console.log("email id on questionnaire page is ", emailId);
@@ -75,13 +75,13 @@ export function Questionnaire({ userData }) {
     });
 
     setAnswers(updatedScores);
-
+    console.log("the updated response is ", answers);
     // check if all the answers have same value
     const finalcount = new Set(Object.values(updatedScores)).size === 1;
 
     if (finalcount) {
       setError(
-        "You can't be neural for the answer. Kindly select appropriate answers."
+        "You can't be neural for all answers. Kindly select appropriate answers."
       );
     } else {
       setError("");
@@ -90,6 +90,7 @@ export function Questionnaire({ userData }) {
         ["", -Infinity] // minus infinity as the  initial value
       )[0];
 
+      console.log("the dominant presonlity", dominantPersonality);
       fetch(URLS.base + `savePersonality/${dominantPersonality}/${emailId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -110,18 +111,28 @@ export function Questionnaire({ userData }) {
                 personality_test: "Y",
               },
             };
+
+            jobDetails = updatedJobDetails;
             navigate("/applyForJob", {
-              state: { job, emailId, updatedJobDetails },
+              state: { job, emailId, jobDetails },
             });
           }
         });
     }
   };
+  const logout = () => {
+    navigate("/");
+  };
 
   return (
     <div className="questionnaire-wrapper">
       <input type="text" className="hidden" value={userData?.emailId} />
-
+      {/* <div className="qlogoutDiv">
+        <p className="quserEmail">{emailId}</p>
+        <p className="qlogout" onClick={logout}>
+          Logout
+        </p>
+      </div> */}
       <div className="questionnaire-container">
         <h1 className="questionnaire-title">Personality Test</h1>
         {questions.map((q, index) => (

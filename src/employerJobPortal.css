@@ -355,7 +355,7 @@ label {
 .admin-job-description {
   text-align: left;
   word-wrap: break-word;
-  background-color: #776a06;
+  background: linear-gradient(to right, #414346, hsl(100, 90%, 16%));
 }
 
 .noJoblist {
@@ -372,4 +372,8 @@ label {
 
 .gotoPreviousPage:hover {
   text-decoration: underline;
+}
+
+.jobdescriptionmodal {
+  word-wrap: break-word;
 }
