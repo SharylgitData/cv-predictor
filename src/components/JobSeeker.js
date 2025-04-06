@@ -36,6 +36,20 @@ export default function JobSeeker() {
   const logout = () => {
     navigate("/");
   };
+
+  const candidateJobApp = () => {
+    fetch(URLS.base + `candidateapp/${emailId}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        navigate("/candidateappliedjobs", {
+          state: { emailId, data, jobDetails },
+        });
+      });
+  };
+
   return (
     <div className="employer-container">
       <div className="logoutDiv">
@@ -43,6 +57,9 @@ export default function JobSeeker() {
         <p className="logout" onClick={logout}>
           Logout
         </p>
+        <div className="appliedJobs" onClick={candidateJobApp}>
+          <p>Applied jobs</p>
+        </div>
       </div>
       <h1>Job Listings</h1>
       <div className="section-box">

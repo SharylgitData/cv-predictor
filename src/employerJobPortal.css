@@ -377,3 +377,12 @@ label {
 .jobdescriptionmodal {
   word-wrap: break-word;
 }
+
+.appliedJobs {
+  display: flex;
+  color: #ffed63;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-left: 90%;
+  cursor: pointer;
+}
